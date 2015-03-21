@@ -15,17 +15,30 @@ h1, h2, h3, h4 {
     margin-top: 0;
 }
 
+a {
+    word-wrap: break-word;
+}
+
 .date {
     color: #828282;
     margin-bottom: 10px;
     text-align: right;
 }
 
+.errorlist {
+    color: #F42929;
+    padding-left: 20px;
+    margin: 10px 0 20px;
+}
+
 .save {
     float: right;
 }
 
-.post-form textarea, .post-form input {
+.post-form input,
+.post-form textarea {
+    border: 1px solid #CCC;
+    padding: 5px 10px;
     width: 100%;
 }
 
