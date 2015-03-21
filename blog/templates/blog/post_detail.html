@@ -9,6 +9,6 @@
         </div>
         {% endif %}
         <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaks }}</p>
+        <p>{{ post.text|urlize|linebreaks }}</p>
     </div>
 {% endblock content %}
