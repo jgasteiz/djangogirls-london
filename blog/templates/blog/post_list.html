@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Javi's blog</title>
-</head>
-<body>
-    <h1>Javi's blog</h1>
-    <h2>A blog made during Django Girls London</h2>
+{% extends 'blog/base.html' %}
 
-    <div role="main">
-        {% for post in posts %}
+{% block content %}
+    {% for post in posts %}
         <div class="post">
-            <h3 class="post-title">{{ post.title }}</h3>
-            <p class="post-content">Published: {{ post.published_date }}</p>
-            <div class="post-content">{{ post.text|linebreaks }}</div>
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaks }}</p>
         </div>
-        {% endfor %}
-    </div>
-</body>
-</html>
+    {% endfor %}
+{% endblock content %}
