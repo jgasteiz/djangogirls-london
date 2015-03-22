@@ -8,7 +8,16 @@
             {{ post.published_date }}
         </div>
         {% endif %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+        <div class="pull-right">
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            {% if post.published_date %}
+            <a class="btn btn-danger" href="{% url 'post_unpublish' pk=post.pk %}">Unpublish</a>
+            {% else %}
+            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+            {% endif %}
+        </div>
+
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|urlize|linebreaks }}</p>
     </div>
