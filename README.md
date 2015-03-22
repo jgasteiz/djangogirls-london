@@ -26,23 +26,38 @@ Now, some instructions on how you can download this code so you can play with it
     (myvenv) $ pip install dj-database-url gunicorn whitenoise
     ```
 
-4. Create the database by creating and running the migrations.
+4. Create a `local_settings.py` file in `mysite` directory and paste this into it.
+    ```
+    import os
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+    DEBUG = True
+    ```
+
+5. Create the database by creating and running the migrations.
     ```
     (myvenv) $ python manage.py makemigrations blog
     (myvenv) $ python manage.py migrate
     ```
 
-5. Create a superuser. Remember this is just for playing locally, there's no need for entering a complicated password here.
+6. Create a superuser. Remember this is just for playing locally, there's no need for entering a complicated password here.
     ```
     (myvenv) $ python manage.py createsuperuser
     ```
 
-6. Run the server!
+7. Run the server!
     ```
     (myvenv) $ python manage.py runserver
     ```
 
-7. Login. Go to [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) and log in with the user and password you just created. After that, you should be able to go to http://127.0.0.1:8000/, create a new post by clicking the **+** sign you should see on the top right.
+8. Login. Go to [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) and log in with the user and password you just created. After that, you should be able to go to http://127.0.0.1:8000/, create a new post by clicking the **+** sign you should see on the top right.
 
 ## Extras
 
