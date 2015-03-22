@@ -58,4 +58,5 @@ Although this blog is pretty much what the tutorial explain, it has a couple of 
         'django.core.context_processors.request',
     )
     ```
+
 - Not signed in users are not allowed to create or edit a post.
