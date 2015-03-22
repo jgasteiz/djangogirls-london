@@ -16,7 +16,9 @@
 <body>
     <header>
         <div class="page-header">
+            {% if request.user.is_authenticated %}
             <a href="{% url 'blog.views.post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endif %}
             <h1><a href="/">Django Girls Blog</a></h1>
         </div>
     </header>

@@ -9,6 +9,7 @@
         </div>
         {% endif %}
 
+        {% if request.user.is_authenticated %}
         <div class="pull-right">
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             {% if post.published_date %}
@@ -17,6 +18,7 @@
             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
             {% endif %}
         </div>
+        {% endif %}
 
         <h1>{{ post.title }}</h1>
         <div>{{ post.text|urlize|linebreaks }}</div>
