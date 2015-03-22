@@ -6,8 +6,13 @@ from .models import Post
 
 
 def post_list(request):
-    posts_qs = Post.objects.filter(published_date__lte=timezone.now())
-    posts = posts_qs.order_by('-published_date')
+    if request.user.is_authenticated:
+        posts_qs = Post.objects.all()
+        posts = posts_qs.order_by('-created_date')
+    else:
+        posts_qs = Post.objects.filter(published_date__lte=timezone.now())
+        posts = posts_qs.order_by('-published_date')
+
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
@@ -17,6 +22,9 @@ def post_detail(request, pk):
 
 
 def post_new(request):
+    if not request.user.is_authenticated():
+        return redirect('blog.views.post_list')
+
     if request.method == "POST":
         form = PostForm(request.POST)
 
@@ -31,6 +39,9 @@ def post_new(request):
 
 
 def post_edit(request, pk):
+    if not request.user.is_authenticated():
+        return redirect('blog.views.post_list')
+
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -46,12 +57,18 @@ def post_edit(request, pk):
 
 
 def post_publish(request, pk):
+    if not request.user.is_authenticated():
+        return redirect('blog.views.post_list')
+
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('blog.views.post_detail', pk=post.pk)
 
 
 def post_unpublish(request, pk):
+    if not request.user.is_authenticated():
+        return redirect('blog.views.post_list')
+
     post = get_object_or_404(Post, pk=pk)
     post.unpublish()
     return redirect('blog.views.post_detail', pk=post.pk)

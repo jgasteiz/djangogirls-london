@@ -2,10 +2,15 @@
 
 {% block content %}
     {% for post in posts %}
-        <div class="post">
+        <div class="post {% if not post.published_date %}post-unpublished{% endif %}">
+            {% if post.published_date %}
             <div class="date">
                 {{ post.published_date }}
             </div>
+            {% else %}
+            <div class="pull-right"><em>This post is not published</em></div>
+            {% endif %}
+
             <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <div>{{ post.text|urlize|linebreaks }}</div>
         </div>

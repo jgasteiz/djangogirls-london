@@ -53,6 +53,11 @@ a {
     margin-bottom: 70px;
 }
 
+.post-unpublished {
+    background-color: #FDF894;
+    padding: 10px;
+}
+
 .post h1 a, .post h1 a:visited {
     color: #000000;
 }
