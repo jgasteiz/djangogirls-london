@@ -6,7 +6,7 @@ from .models import Post
 
 
 def post_list(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         posts_qs = Post.objects.all()
         posts = posts_qs.order_by('-created_date')
     else:
